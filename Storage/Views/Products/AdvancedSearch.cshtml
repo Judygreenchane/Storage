@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Product>
+@{
+    ViewData["Title"] = "Advanced Search";
+}
+
+<h2>Advanced Search</h2>
+<form asp-action="AdvancedSearch" method="get">
+<label for="product">Enter product:</label>
+<input type="text" name="product" class="form-control" />
+<select name="category" asp-items=@ViewBag.CategoryList>
+   
+    <option value="">-- Select Category --</option>
+</select>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+@if (Model != null && Model.Any())
+{
+    <h3>Search Results</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td>@product.Name</td>
+                    <td>@product.Price</td>
+                    <td>@product.Category</td>
+                    <td>@product.Count</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No products found in this category.</p>
+}
+
+
+

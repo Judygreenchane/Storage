@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Product>
+@{
+    ViewData["Title"] = "Search by Category";
+}
+
+<h2>Search by Category</h2>
+
+<form asp-action="SearchByCategory" method="get">
+    <div class="form-group">
+        <label for="category">Enter category:</label>
+        <input type="text" name="category" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+
+
+
+
+
+
+
+
+ @if (Model != null && Model.Any())
+{
+    <h3>Search Results</h3> 
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td>@product.Name</td>
+                    <td>@product.Price</td>
+                    <td>@product.Category</td>
+                    <td>@product.Count</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No products found in this category.</p>
+} 
+
